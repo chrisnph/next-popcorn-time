@@ -1,11 +1,11 @@
 import { MovieProvider } from "./contexts/MovieContext/MovieProvider";
-import Movie from "./movie/page";
+import Movies from "./Movies";
 
 const Home = () => {
   return (
     <main className="bg-black">
       <MovieProvider>
-        <Movie />
+        <Movies />
       </MovieProvider>
     </main>
   );

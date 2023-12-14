@@ -9,8 +9,8 @@ const NavBar = () => {
             <img src="/logo.png" className="max-h-[50px] w-auto" />
         </Link>
         <div className="space-x-10">
-          <Link href="/movie">Movies</Link>
-          <Link href="/tvShows">TV Shows</Link>
+          {/* <Link href="/movie">Movies</Link> */}
+          {/* <Link href="/tvShows">TV Shows</Link> */}
         </div>
 
       </nav>

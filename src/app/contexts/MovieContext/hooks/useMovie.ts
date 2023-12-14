@@ -6,20 +6,28 @@ const useMovie = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<MovieTypes.movie[] | []>([]);
   const [query, setQuery] = useState<string>("");
+  const [paging, setPaging] = useState<number>(1);
 
-  const handleGetMovies = async (page: number = 1) => {
+  const handleGetMovies = async () => {
     try {
       setIsLoading(true);
 
-      const { data } = await useAxios.get(
-        `/3/discover/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${page}`
+      const {
+        data: { page, results },
+      }: {
+        data: {
+          page: number;
+          results: MovieTypes.movie[];
+        };
+      } = await useAxios.get(
+        `/3/movie/now_playing?language=en-US&sort_by=popularity.desc&include_adult=true&page=${paging}`
       );
 
-      console.clear()
-      console.log(data.results)
-      setMovies(data.results);
+      setMovies(results);
       setIsLoading(false);
-    } catch (error) {
+
+      return { page, results };
+    } catch (error: any) {
       console.error(error);
     }
   };
@@ -31,6 +39,8 @@ const useMovie = () => {
   return {
     isLoading,
     setIsLoading,
+    paging,
+    setPaging,
     movies,
     setMovies,
     handleGetMovies,
