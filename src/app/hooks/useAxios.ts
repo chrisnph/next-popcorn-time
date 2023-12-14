@@ -6,6 +6,10 @@ const useAxios = axios.create({
 
 useAxios.interceptors.request.use(
   (config) => {
+    if (config.headers)
+      config.headers.Authorization =
+        "Bearer " + process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN;
+
     return config;
   },
   (error) => Promise.reject(error)
