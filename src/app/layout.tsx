@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={arya.className}>
+      <body className={arya.className + " bg-black"}>
         <NavBar />
         {children}
       </body>
