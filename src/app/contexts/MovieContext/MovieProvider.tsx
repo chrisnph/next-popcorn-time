@@ -8,12 +8,14 @@ const MovieContext = createContext<MovieTypes.MovieContext>({
   isLoading: true,
   setIsLoading: () => {},
   movies: [],
+  setMovies: () => {},
   paging: 1,
   setPaging: () => {},
-  setMovies: () => {},
   handleGetMovies: async () => [],
   query: "",
   setQuery: () => {},
+  filteredMovies: [],
+  setFilteredMovies: () => {},
 });
 
 const MovieProvider = ({ children }: { children: ReactNode }) => {
@@ -21,12 +23,14 @@ const MovieProvider = ({ children }: { children: ReactNode }) => {
     isLoading,
     setIsLoading,
     movies,
+    setMovies,
     paging,
     setPaging,
-    setMovies,
     handleGetMovies,
     query,
     setQuery,
+    filteredMovies,
+    setFilteredMovies,
   }: MovieTypes.MovieContext = useMovie();
 
   return (
@@ -41,6 +45,8 @@ const MovieProvider = ({ children }: { children: ReactNode }) => {
         handleGetMovies,
         query,
         setQuery,
+        filteredMovies,
+        setFilteredMovies,
       }}
     >
       {children}

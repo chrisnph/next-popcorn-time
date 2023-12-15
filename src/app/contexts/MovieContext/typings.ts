@@ -106,15 +106,17 @@ declare namespace MovieTypes {
     isLoading: boolean;
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
     movies: MovieTypes.movie[] | [];
+    setMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
     paging: number;
     setPaging: React.Dispatch<React.SetStateAction<number>>;
-    setMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
     handleGetMovies: (
       updateState?: boolean,
       customPage?: number
     ) => Promise<any>;
     query: string;
     setQuery: React.Dispatch<React.SetStateAction<string>>;
+    filteredMovies: MovieTypes.movie[] | [];
+    setFilteredMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
   }
 }
 

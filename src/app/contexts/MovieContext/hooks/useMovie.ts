@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import MovieTypes from "../typings";
 import useAxios from "@/app/hooks/useAxios";
 
 const useMovie = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<MovieTypes.movie[] | []>([]);
+  const [filteredMovies, setFilteredMovies] = useState<MovieTypes.movie[] | []>(
+    []
+  );
   const [query, setQuery] = useState<string>("");
   const [paging, setPaging] = useState<number>(1);
 
@@ -14,7 +17,6 @@ const useMovie = () => {
   ) => {
     try {
       updateState && setIsLoading(true);
-      console.log({ paging });
 
       const {
         data: { page, results },
@@ -60,6 +62,18 @@ const useMovie = () => {
     }
   };
 
+  const handleSearchMovie = useCallback(() => {
+    const filteredData = movies.filter(({ title }) =>
+      title.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setFilteredMovies(filteredData);
+  }, [query]);
+
+  useEffect(() => {
+    handleSearchMovie();
+  }, [query]);
+
   useEffect(() => {
     movies.length < 1 && handleGetMovies(true);
   }, [movies, paging]);
@@ -70,6 +84,8 @@ const useMovie = () => {
     paging,
     setPaging,
     movies,
+    filteredMovies,
+    setFilteredMovies,
     setMovies,
     handleGetMovies,
     query,

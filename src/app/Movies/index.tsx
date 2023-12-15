@@ -9,8 +9,17 @@ import useModal from "../components/Tailwind/Modal/hooks/useModal";
 import MovieDetailsModal from "./MovieDetails";
 
 const Movies = () => {
-  const { isLoading, movies, setMovies, handleGetMovies, paging, setPaging } =
-    useMovieContext();
+  const {
+    isLoading,
+    movies,
+    setMovies,
+    handleGetMovies,
+    paging,
+    setPaging,
+    query,
+    setQuery,
+    filteredMovies,
+  } = useMovieContext();
 
   const { showModal, setShowModal } = useModal();
 
@@ -55,6 +64,15 @@ const Movies = () => {
       />
 
       <div className="mt-[50px] px-[1rem] md:px-[5rem]">
+        <div className="text-black text-[1.2rem] font-medium p-0 m-0 w-full rounded-3xl mb-[100px] h-[40px]">
+          <input
+            type="text"
+            placeholder="Search for a movie"
+            className="rounded-3xl outline-none w-full px-6 py-3 bg-white bg-opacity-80 h-[40px]"
+            onChange={({ currentTarget: { value } }) => setQuery(value)}
+          />
+        </div>
+
         <motion.div className="my-[1rem]" {...delayedFadeInAnimation}>
           <div className="my-10 md:my-5">
             <span className="text-[#B6FFF5] text-[2rem] font-extrabold p-0 m-0">
@@ -64,7 +82,7 @@ const Movies = () => {
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-10 sm:gap-4 w-full">
-          {movies.map((movie, index) => (
+          {(query.length > 0 ? filteredMovies : movies).map((movie, index) => (
             <div
               key={index}
               ref={index === movies.length - 1 ? movieRef : null}

@@ -50,8 +50,6 @@ const MovieDetailsModal = ({
   const iframeProps: CustomIframeProps = {
     id: "ytplayer",
     type: "text/html",
-    width: "100%",
-    height: "505",
     src: youtubeVideoUrl,
     frameBorder: "0",
     allowFullScreen: true,
@@ -76,14 +74,19 @@ const MovieDetailsModal = ({
   return (
     <Modal showModal={showModal} setShowModal={setShowModal}>
       <div className="flex flex-col justify-around rounded-t">
-        <div className="flex justify-center items-center">
-          {iframeProps.src && <iframe {...iframeProps} />}
+        <div className="md:flex justify-center items-center">
+          {iframeProps.src && (
+            <iframe
+              {...iframeProps}
+              className="h-[340px] md:h-[505px] w-full "
+            />
+          )}
         </div>
 
-        <div className="text-[#B6FFF5] relative flex gap-4">
+        <div className="text-[#B6FFF5] relative flex flex-col sm:flex-row gap-4">
           <div className="w-full md:max-w-[320px]">
             <img
-              className="object-cover object-center"
+              className="object-cover object-center min-h-[543px] sm:h-auto w-full hidden sm:block"
               src={
                 process!.env!.NEXT_PUBLIC_TMDB_IMAGE_URL +
                 movieDetails!.poster_path
@@ -95,10 +98,10 @@ const MovieDetailsModal = ({
             />
           </div>
           <div className="flex justify-between items-start w-full py-[20px] pl-[10px] pr-[40px]">
-            <div className="flex flex-col">
-              <div className="flex justify-between items-center w-full">
+            <div className="flex flex-col h-full max-h-none sm:max-h-[523px] overflow-y-hidden sm:overflow-y-auto">
+              <div className="flex justify-between items-start w-full gap-5">
                 <span className="text-[28px]">{movieDetails?.title}</span>
-                <span className="text-[21px] text-[#777777]">
+                <span className="text-[14px] md:text-[21px] text-[#777777]">
                   Rated {movieDetails?.vote_average.toFixed(1)} of 10
                 </span>
               </div>
