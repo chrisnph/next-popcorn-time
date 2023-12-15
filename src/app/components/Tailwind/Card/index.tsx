@@ -29,20 +29,24 @@ const Card = ({
 
   const [cardOptions, setCardOptions] = useState<string | undefined>();
 
-  const styles = {
-    background: bgImg ? `center / cover no-repeat url("${bgImg}")` : "",
-  };
-
   useEffect(() => {
     setCardOptions(Object.values(optionProps).join(" "));
   }, [optionProps]);
 
   return (
     <div
-      className={`container-card rounded-2xl w-full h-full ${cardOptions}`}
-      style={styles}
+      className={`container-card relative rounded-2xl w-full h-full ${cardOptions}`}
     >
       {children}
+      {bgImg && (
+        <img
+          className="absolute object-fill w-full h-full rounded-2xl top-0 left-0"
+          src={bgImg}
+          onError={(e) => {
+            e.currentTarget.src = "/placeholder-movie.png";
+          }}
+        />
+      )}
     </div>
   );
 };
