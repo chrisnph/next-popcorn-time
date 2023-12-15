@@ -117,6 +117,8 @@ declare namespace MovieTypes {
     setQuery: React.Dispatch<React.SetStateAction<string>>;
     filteredMovies: MovieTypes.movie[] | [];
     setFilteredMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
+    sort: string;
+    setSort: React.Dispatch<React.SetStateAction<string>>;
   }
 }
 

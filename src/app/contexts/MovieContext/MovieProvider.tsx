@@ -14,6 +14,8 @@ const MovieContext = createContext<MovieTypes.MovieContext>({
   handleGetMovies: async () => [],
   query: "",
   setQuery: () => {},
+  sort: "",
+  setSort: () => {},
   filteredMovies: [],
   setFilteredMovies: () => {},
 });
@@ -31,6 +33,8 @@ const MovieProvider = ({ children }: { children: ReactNode }) => {
     setQuery,
     filteredMovies,
     setFilteredMovies,
+    sort,
+    setSort,
   }: MovieTypes.MovieContext = useMovie();
 
   return (
@@ -47,6 +51,8 @@ const MovieProvider = ({ children }: { children: ReactNode }) => {
         setQuery,
         filteredMovies,
         setFilteredMovies,
+        sort,
+        setSort,
       }}
     >
       {children}

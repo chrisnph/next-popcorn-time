@@ -5,11 +5,12 @@ import useAxios from "@/app/hooks/useAxios";
 const useMovie = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<MovieTypes.movie[] | []>([]);
+  const [paging, setPaging] = useState<number>(1);
   const [filteredMovies, setFilteredMovies] = useState<MovieTypes.movie[] | []>(
     []
   );
   const [query, setQuery] = useState<string>("");
-  const [paging, setPaging] = useState<number>(1);
+  const [sort, setSort] = useState<string>("");
 
   const handleGetMovies = async (
     updateState?: boolean,
@@ -70,6 +71,35 @@ const useMovie = () => {
     setFilteredMovies(filteredData);
   }, [query]);
 
+  const handleSortMovie = useCallback(() => {
+    if (!sort) return;
+
+    const sortOptions: string[] = sort.split("-");
+    const sortType: string = sortOptions[0];
+    const sortOrder: string = sortOptions[1];
+
+    console.clear();
+
+    const filteredData = movies.sort((a: any, b: any) => {
+      let comparison;
+
+      if (sortType === "title") {
+        comparison = a.title.localeCompare(b.title);
+      } else {
+        comparison = a[sortType] - b[sortType];
+      }
+
+      if (comparison !== 0) {
+        return sortOrder === "asc" ? comparison : -comparison;
+      } else {
+        return 0;
+      }
+    });
+
+    setMovies(filteredData);
+    setFilteredMovies([]);
+  }, [sort]);
+
   useEffect(() => {
     handleSearchMovie();
   }, [query]);
@@ -77,6 +107,10 @@ const useMovie = () => {
   useEffect(() => {
     movies.length < 1 && handleGetMovies(true);
   }, [movies, paging]);
+
+  useEffect(() => {
+    handleSortMovie();
+  }, [sort]);
 
   return {
     isLoading,
@@ -91,6 +125,8 @@ const useMovie = () => {
     query,
     setQuery,
     handleGetMoviesDetails,
+    sort,
+    setSort,
   };
 };
 

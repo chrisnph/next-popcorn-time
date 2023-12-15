@@ -13,12 +13,13 @@ const Movies = () => {
     isLoading,
     movies,
     setMovies,
-    handleGetMovies,
     paging,
+    filteredMovies,
+    handleGetMovies,
     setPaging,
     query,
     setQuery,
-    filteredMovies,
+    setSort,
   } = useMovieContext();
 
   const { showModal, setShowModal } = useModal();
@@ -74,10 +75,34 @@ const Movies = () => {
         </div>
 
         <motion.div className="my-[1rem]" {...delayedFadeInAnimation}>
-          <div className="my-10 md:my-5">
-            <span className="text-[#B6FFF5] text-[2rem] font-extrabold p-0 m-0">
+          <div className="my-10 md:my-5 flex justify-between items-end">
+            <span className="text-[#B6FFF5] text-[2rem] font-extrabold p-0 m-0 leading-none">
               In Theaters
             </span>
+
+            <div className="flex items-end text-[#B6FFF5] gap-1 font-medium">
+              <span className="h-[31px] flex items-center">Sort By: </span>
+              <select
+                name="sort"
+                id="sort"
+                className="outline-none bg-transparent flex items-center"
+                defaultValue="popularity-desc"
+                onChange={({ currentTarget: { value } }) => setSort(value)}
+              >
+                <option value="title-asc">Title (Ascending)</option>
+                <option value="title-desc">Title (Descending)</option>
+                <option value="release-desc">Release (Newest)</option>
+                <option value="release-asc">Release (Oldest)</option>
+                <option value="popularity-asc">
+                  Popularity (Lowest to Highest)
+                </option>
+                <option value="popularity-desc">
+                  Popularity (Highest to Lowest)
+                </option>
+                <option value="vote_average-asc">Rating (Lowest to Highest)</option>
+                <option value="vote_average-desc">Rating (Highest to Lowest)</option>
+              </select>
+            </div>
           </div>
         </motion.div>
 
