@@ -20,7 +20,7 @@ const useMovie = () => {
           results: MovieTypes.movie[];
         };
       } = await useAxios.get(
-        `/3/movie/now_playing?language=en-US&sort_by=popularity.desc&include_adult=true&page=${paging}`
+        `/3/movie/now_playing?language=en-US&sort_by=popularity.desc&include_adult=false&page=${paging}`
       );
 
       updateState && setMovies([...movies, ...results]);

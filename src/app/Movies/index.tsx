@@ -44,12 +44,14 @@ const Movies = () => {
   return (
     <div className="mt-[50px] px-[1rem] md:px-[5rem]">
       <motion.div className="my-[1rem]" {...delayedFadeInAnimation}>
-        <span className="text-[#B6FFF5] text-[2rem] font-extrabold p-0 m-0">
-          In Theaters
-        </span>
+        <div className="my-10 md:my-5">
+          <span className="text-[#B6FFF5] text-[2rem] font-extrabold p-0 m-0">
+            In Theaters
+          </span>
+        </div>
       </motion.div>
 
-      <div className="flex flex-wrap justify-center gap-0 sm:gap-4 w-full">
+      <div className="flex flex-wrap justify-center gap-10 sm:gap-4 w-full">
         {movies.map((movie, index) => (
           <div
             ref={index === movies.length - 1 ? movieRef : null}
