@@ -21,6 +21,7 @@ declare namespace MovieTypes {
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
     movies: MovieTypes.movie[] | [];
     paging: number;
+    setPaging: React.Dispatch<React.SetStateAction<number>>;
     setMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
     handleGetMovies: () => Promise<any>;
     query: string;

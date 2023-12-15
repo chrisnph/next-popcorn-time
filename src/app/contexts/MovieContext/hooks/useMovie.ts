@@ -8,9 +8,9 @@ const useMovie = () => {
   const [query, setQuery] = useState<string>("");
   const [paging, setPaging] = useState<number>(1);
 
-  const handleGetMovies = async () => {
+  const handleGetMovies = async (updateState?: boolean) => {
     try {
-      setIsLoading(true);
+      updateState && setIsLoading(true);
 
       const {
         data: { page, results },
@@ -23,8 +23,8 @@ const useMovie = () => {
         `/3/movie/now_playing?language=en-US&sort_by=popularity.desc&include_adult=true&page=${paging}`
       );
 
-      setMovies(results);
-      setIsLoading(false);
+      updateState && setMovies([...movies, ...results]);
+      updateState && setIsLoading(false);
 
       return { page, results };
     } catch (error: any) {
@@ -33,7 +33,7 @@ const useMovie = () => {
   };
 
   useEffect(() => {
-    movies.length < 1 && handleGetMovies();
+    movies.length < 1 && handleGetMovies(true);
   }, [movies]);
 
   return {
