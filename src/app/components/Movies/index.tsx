@@ -65,7 +65,7 @@ const Movies = () => {
         <ActionPanelGenres />
 
         <motion.div className="my-[1rem]" {...delayedFadeInAnimation}>
-          <div className="my-10 md:my-5 flex flex-col sm:flex-row justify-between items-end">
+          <div className="my-10 md:my-5 flex flex-col sm:flex-row justify-between items-start md:items-end">
             <span className="text-[#B6FFF5] text-[2rem] font-extrabold p-0 m-0 leading-none w-[250px]">
               In Theaters
             </span>
