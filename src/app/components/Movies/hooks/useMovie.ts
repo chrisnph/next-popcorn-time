@@ -54,8 +54,8 @@ const useMovie = () => {
 
         let filteredData: MovieTypes.movie[] = [];
 
-        // filteredData = handleSearchMovieHelper({ query, movies: results });
-        filteredData = handleSortMovieHelper({ sort, movies: results }) ?? [];
+        filteredData = handleSearchMovieHelper({ query, movies: results });
+        // filteredData = handleSortMovieHelper({ sort, movies: results }) ?? [];
 
         if (selectedGenres.length > 0) {
           filteredData = handleFilterGenresHelper({
@@ -101,7 +101,7 @@ const useMovie = () => {
   }, [query, movies, filteredMovies, setFilteredMovies]);
 
   const handleSortMovie = useCallback(() => {
-    let filteredData = handleSortMovieHelper({ sort, movies });
+    const filteredData = handleSortMovieHelper({ sort, movies });
     setFilteredMovies(filteredData ?? []);
   }, [sort, movies, handleSortMovieHelper, setFilteredMovies]);
 

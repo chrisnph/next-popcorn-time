@@ -9,7 +9,6 @@ import {
 import Modal from "../Tailwind/Modal";
 import MovieTypes from "./contexts/MovieContext/typings";
 import useMovie from "./hooks/useMovie";
-import Image from "next/image";
 
 type CustomIframeProps = IframeHTMLAttributes<HTMLIFrameElement> & {
   id: string;
@@ -86,7 +85,7 @@ const MovieDetailsModal = ({
 
         <div className="text-[#B6FFF5] relative flex flex-col sm:flex-row gap-4">
           <div className="w-full md:max-w-[320px]">
-            <Image
+            <img
               className="object-cover object-center min-h-[543px] sm:h-auto w-full hidden sm:block"
               src={
                 process!.env!.NEXT_PUBLIC_TMDB_IMAGE_URL +
@@ -96,6 +95,7 @@ const MovieDetailsModal = ({
               onError={(e) => {
                 e.currentTarget.src = "/placeholder-movie.png";
               }}
+              width="auto"
             />
           </div>
           <div className="flex justify-between items-start w-full py-[20px] pl-[10px] pr-[40px]">

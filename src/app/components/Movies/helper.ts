@@ -28,21 +28,6 @@ export const handleSortMovieHelper = ({
   const sortOptions: string[] = sort.split("-");
   const sortType: string = sortOptions[0];
   const sortOrder: string = sortOptions[1];
-  //   filteredData = filteredData.sort((a: any, b: any) => {
-  //     let comparison;
-
-  //     if (sortType === "title") {
-  //       comparison = a.title.localeCompare(b.title);
-  //     } else {
-  //       comparison = a[sortType] - b[sortType];
-  //     }
-
-  //     if (comparison !== 0) {
-  //       return sortOrder === "asc" ? comparison : -comparison;
-  //     } else {
-  //     //   return 0;
-  //     }
-  //   });
 
   filteredData = filteredData.sort((a: any, b: any) => {
     if (sortType === "title") {

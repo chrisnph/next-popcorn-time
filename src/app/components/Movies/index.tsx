@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import useModal from "../Tailwind/Modal/hooks/useModal";
 import MovieDetailsModal from "./MovieDetails";
 import ActionPanelGenres from "./MoviesActionPanel/ActionPanelGenres";
+import { useDebounce } from "@/app/hooks/useDebounce";
 
 const Movies = () => {
   const {
@@ -34,6 +35,7 @@ const Movies = () => {
 
     const observer = new IntersectionObserver(async ([entry]) => {
       if (entry.isIntersecting) {
+        useDebounce({ delay: 500 });
         setPaging(paging + 1);
         setScrollAmount(window.scrollY);
         observer.unobserve(entry.target);
