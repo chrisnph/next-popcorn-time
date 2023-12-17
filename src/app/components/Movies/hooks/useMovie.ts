@@ -11,9 +11,9 @@ const useMovie = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<MovieTypes.movie[] | []>([]);
   const [paging, setPaging] = useState<number>(1);
-  const [filteredMovies, setFilteredMovies] = useState<
-    MovieTypes.movie[] | [] | undefined
-  >([]);
+  const [filteredMovies, setFilteredMovies] = useState<MovieTypes.movie[] | []>(
+    []
+  );
   const [query, setQuery] = useState<string>("");
   const [sort, setSort] = useState<string>("popularity-desc");
   const [rating, setRating] = useState<number>(0);
@@ -49,15 +49,13 @@ const useMovie = () => {
             results: MovieTypes.movie[];
           };
         } = await useAxios.get(
-          `/3/movie/now_playing?language=en-US&page=${
-            customPage || paging
-          }`
+          `/3/movie/now_playing?language=en-US&page=${customPage || paging}`
         );
 
-        let filteredData: MovieTypes.movie[] | undefined = [];
+        let filteredData: MovieTypes.movie[] = [];
 
         // filteredData = handleSearchMovieHelper({ query, movies: results });
-        filteredData = handleSortMovieHelper({ sort, movies: results });
+        filteredData = handleSortMovieHelper({ sort, movies: results }) ?? [];
 
         if (selectedGenres.length > 0) {
           filteredData = handleFilterGenresHelper({
@@ -66,10 +64,11 @@ const useMovie = () => {
           });
         }
 
-        const finalMoviesData = [...new Set([...movies, ...filteredData])];
+        const finalMoviesData = [
+          ...new Set([...movies, ...(filteredData ?? [])]),
+        ];
 
         setMovies(finalMoviesData);
-
       } catch (error: any) {
         console.error(error);
       }
@@ -103,7 +102,7 @@ const useMovie = () => {
 
   const handleSortMovie = useCallback(() => {
     let filteredData = handleSortMovieHelper({ sort, movies });
-    setFilteredMovies(filteredData);
+    setFilteredMovies(filteredData ?? []);
   }, [sort, movies, handleSortMovieHelper, setFilteredMovies]);
 
   const handleFilterGenres = useCallback(() => {
