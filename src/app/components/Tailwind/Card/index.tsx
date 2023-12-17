@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ReactNode, useEffect, useState } from "react";
 
 const Card = ({
@@ -39,8 +40,9 @@ const Card = ({
     >
       {children}
       {bgImg && (
-        <img
+        <Image
           className="absolute object-fill w-full h-full rounded-2xl top-0 left-0"
+          alt="Movie Card"
           src={bgImg}
           onError={(e) => {
             e.currentTarget.src = "/placeholder-movie.png";
