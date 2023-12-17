@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, createContext, useContext } from "react";
-import useMovie from "./hooks/useMovie";
+import useMovie from "../../hooks/useMovie";
 import MovieTypes from "./typings";
 
 const MovieContext = createContext<MovieTypes.MovieContext>({
@@ -18,6 +18,12 @@ const MovieContext = createContext<MovieTypes.MovieContext>({
   setSort: () => {},
   filteredMovies: [],
   setFilteredMovies: () => {},
+  rating: 0,
+  setRating: () => {},
+  genres: [],
+  setGenres: () => {},
+  selectedGenres: [],
+  setSelectedGenres: () => {},
 });
 
 const MovieProvider = ({ children }: { children: ReactNode }) => {
@@ -35,6 +41,12 @@ const MovieProvider = ({ children }: { children: ReactNode }) => {
     setFilteredMovies,
     sort,
     setSort,
+    rating,
+    setRating,
+    genres,
+    setGenres,
+    selectedGenres,
+    setSelectedGenres,
   }: MovieTypes.MovieContext = useMovie();
 
   return (
@@ -53,6 +65,12 @@ const MovieProvider = ({ children }: { children: ReactNode }) => {
         setFilteredMovies,
         sort,
         setSort,
+        rating,
+        setRating,
+        genres,
+        setGenres,
+        selectedGenres,
+        setSelectedGenres,
       }}
     >
       {children}

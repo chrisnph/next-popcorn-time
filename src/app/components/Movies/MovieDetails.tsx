@@ -6,9 +6,9 @@ import {
   useEffect,
   useState,
 } from "react";
-import Modal from "../components/Tailwind/Modal";
-import MovieTypes from "../contexts/MovieContext/typings";
-import useMovie from "../contexts/MovieContext/hooks/useMovie";
+import Modal from "../Tailwind/Modal";
+import MovieTypes from "./contexts/MovieContext/typings";
+import useMovie from "./hooks/useMovie";
 
 type CustomIframeProps = IframeHTMLAttributes<HTMLIFrameElement> & {
   id: string;

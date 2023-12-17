@@ -34,3 +34,30 @@ export const delayedFadeInAnimation = {
   animate: { opacity: 1 },
   transition: { delay: 0.5 },
 };
+
+export const genreSelectionAnimation = {
+  variants: {
+    hidden: {
+      opacity: 0,
+      top: 0,
+      scale: 0,
+      zIndex: -1,
+    },
+    visible: {
+      opacity: [0.5, 1],
+      top: 30,
+      scale: 1,
+      zIndex: 20,
+      transition: { type: "spring", bounce: 0.4, duration: 0.8 },
+    },
+    exit: {
+      opacity: [0.5, 0],
+      top: 0,
+      scale: 0,
+      zIndex: -1,
+    },
+  },
+
+  initial: "initial",
+  exit: "exit",
+};

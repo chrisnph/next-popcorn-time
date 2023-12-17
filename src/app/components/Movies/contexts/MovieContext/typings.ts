@@ -21,10 +21,12 @@ declare namespace MovieTypes {
     backdrop_path: string;
     belongs_to_collection: null;
     budget: number;
-    genres: {
-      id: number;
-      name: string;
-    }[];
+    genres:
+      | {
+          id: number;
+          name: string;
+        }[]
+      | [];
     homepage: string;
     id: number;
     imdb_id: string;
@@ -102,6 +104,11 @@ declare namespace MovieTypes {
     };
   }
 
+  export interface movieGenres {
+    id: number;
+    name: string;
+  }
+
   export interface MovieContext {
     isLoading: boolean;
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -119,6 +126,14 @@ declare namespace MovieTypes {
     setFilteredMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
     sort: string;
     setSort: React.Dispatch<React.SetStateAction<string>>;
+    rating: number;
+    setRating: React.Dispatch<React.SetStateAction<number>>;
+    genres: MovieTypes.movieGenres[] | [];
+    setGenres: React.Dispatch<
+      React.SetStateAction<MovieTypes.movieGenres[] | []>
+    >;
+    selectedGenres: movieGenres[] | [];
+    setSelectedGenres: React.Dispatch<React.SetStateAction<string[] | []>>;
   }
 }
 

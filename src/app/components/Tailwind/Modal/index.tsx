@@ -3,7 +3,7 @@ import TailwindTypes from "./typings";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { type } from "os";
-import { cardAnimation } from "@/app/Movies/animations";
+import { cardAnimation } from "@/app/components/Movies/animations";
 import { dropIn } from "./animations";
 
 const Modal = ({
