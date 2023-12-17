@@ -1,14 +1,28 @@
 import { useMovieContext } from "@/app/components/Movies/contexts/MovieContext/MovieProvider";
-import { faEdit, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, useAnimationControls } from "framer-motion";
 import { genreSelectionAnimation } from "../animations";
-import MovieTypes from "@/app/components/Movies/contexts/MovieContext/typings";
 
 const ActionPanelGenres = () => {
   const { genres, setQuery, selectedGenres, setSelectedGenres } =
     useMovieContext();
   const animateControls = useAnimationControls();
+
+  const handleShowGenres = async (
+    currentTarget: EventTarget & HTMLButtonElement
+  ) => {
+    const isGenreSelectionVisible =
+      document.getElementById("genre-selection")?.style.opacity === "1";
+
+    currentTarget.disabled = true;
+
+    await animateControls.start(
+      !isGenreSelectionVisible ? "visible" : "hidden"
+    );
+
+    currentTarget.disabled = false;
+  };
 
   return (
     <div className="text-black text-[1.2rem] font-medium p-0 m-0 w-full rounded-3xl mb-[100px] h-[40px]">
@@ -22,18 +36,11 @@ const ActionPanelGenres = () => {
       <div className="relative flex items-start text-[#B6FFF5] mt-3 mx-4 leading-none">
         <button
           className="text-[14px] font-extrabold mr-10 flex items-center leading-none"
-          onClick={async () => {
-            const isGenreSelectionVisible =
-              document.getElementById("genre-selection")?.style.opacity === "1";
-
-            await animateControls.start(
-              !isGenreSelectionVisible ? "visible" : "hidden"
-            );
-          }}
+          onClick={({ currentTarget }) => handleShowGenres(currentTarget)}
         >
           <div className="flex mt-1">
-            <span className="mr-1">Genres</span>
-            <FontAwesomeIcon icon={faEdit} />
+            <FontAwesomeIcon icon={faSearch} className="mr-1" />
+            <span>Genres</span>
           </div>
         </button>
 
