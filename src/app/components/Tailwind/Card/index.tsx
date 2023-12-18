@@ -37,6 +37,13 @@ const Card = ({
     <div
       className={`container-card relative rounded-2xl w-full h-full ${cardOptions}`}
     >
+      <div className="flex justify-center items-center w-full h-full">
+        <img
+          className="w-[30px] h-[30px]"
+          alt="loading"
+          src="/loading-spinner-white-thin.gif"
+        />
+      </div>
       {children}
       {bgImg && (
         <img
@@ -44,7 +51,7 @@ const Card = ({
           alt="Movie Card"
           src={bgImg}
           onError={(e) => {
-            e.currentTarget.src = "/placeholder-movie.png";
+            e.currentTarget.src = "/placeholder-movie.jpg";
           }}
         />
       )}
