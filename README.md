@@ -2,7 +2,7 @@
 
 ## Quick Links
 
-- [Demo](https://popcorn-time-oi0luqz6t-chrisnph.vercel.app/)
+- [Demo](https://popcorn-time-bay.vercel.app/)
 
 
 ## Installation
