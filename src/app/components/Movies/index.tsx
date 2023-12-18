@@ -78,7 +78,7 @@ const Movies = () => {
                 <select
                   name="sort"
                   id="sort"
-                  className="outline-none bg-transparent flex items-center"
+                  className="outline-none flex items-center bg-black"
                   defaultValue="popularity-desc"
                   onChange={({ currentTarget: { value } }) => setSort(value)}
                 >
