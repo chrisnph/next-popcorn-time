@@ -93,7 +93,7 @@ const MovieDetailsModal = ({
               }
               alt="Movie Poster"
               onError={(e) => {
-                e.currentTarget.src = "/placeholder-movie.png";
+                e.currentTarget.src = "/placeholder-movie.jpg";
               }}
               width="auto"
             />
