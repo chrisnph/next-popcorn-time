@@ -11,9 +11,9 @@ const useMovie = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<MovieTypes.movie[] | []>([]);
   const [paging, setPaging] = useState<number>(1);
-  const [filteredMovies, setFilteredMovies] = useState<MovieTypes.movie[] | []>(
-    []
-  );
+  const [filteredMovies, setFilteredMovies] = useState<
+    MovieTypes.movie[] | [] | null
+  >(null);
   const [query, setQuery] = useState<string>("");
   const [sort, setSort] = useState<string>("popularity-desc");
   const [rating, setRating] = useState<number>(0);
@@ -97,17 +97,32 @@ const useMovie = () => {
 
   const handleSearchMovie = useCallback(() => {
     const filteredData = handleSearchMovieHelper({ query, movies });
-    setFilteredMovies(!query ? [] : filteredData);
+
+    setFilteredMovies((filteredData.length < 1 && []) || filteredData);
+
+    !query
+      ? setFilteredMovies(null)
+      : setFilteredMovies((filteredData.length < 1 && []) || filteredData);
+
+    // setFilteredMovies(filteredData.length > 0 ? filteredData : null);
   }, [query, movies, filteredMovies, setFilteredMovies]);
 
   const handleSortMovie = useCallback(() => {
     const filteredData = handleSortMovieHelper({ sort, movies });
-    setFilteredMovies(filteredData ?? []);
-  }, [sort, movies, handleSortMovieHelper, setFilteredMovies]);
+
+    if (filteredData) {
+      setMovies(filteredData);
+    }
+  }, [sort, movies, setMovies, handleSortMovieHelper]);
 
   const handleFilterGenres = useCallback(() => {
-    const movieData = handleFilterGenresHelper({ selectedGenres, movies });
-    setFilteredMovies(movieData);
+    const filteredData = handleFilterGenresHelper({ selectedGenres, movies });
+
+    setFilteredMovies(filteredData.length < 1 ? [] : filteredData);
+
+    selectedGenres.length < 1
+      ? setFilteredMovies(null)
+      : setFilteredMovies(filteredData.length > 0 ? filteredData : []);
   }, [selectedGenres, filteredMovies, setFilteredMovies]);
 
   useEffect(() => {

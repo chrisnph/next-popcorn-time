@@ -105,39 +105,36 @@ const Movies = () => {
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-10 sm:gap-4 w-full">
-          {(filteredMovies.length > 0 ? filteredMovies : movies).map(
-            (movie, index) => (
-              <div
-                key={index}
-                ref={index === movies.length - 1 ? movieRef : null}
-                data-ref={index === movies.length - 1 ? index : null}
-                onClick={() => {
-                  setmovieId(movie.id);
-                  setShowModal(!showModal);
-                }}
-              >
-                <motion.div className="mb-4 cursor-pointer" {...cardAnimation}>
-                  <motion.div className="w-[350px] sm:w-[300px] md:w-[240px] h-[450px] sm:h-[400px] md:h-[340px]">
-                    <Card
-                      bgImg={
-                        process.env.NEXT_PUBLIC_TMDB_IMAGE_URL +
-                        movie.poster_path
-                      }
-                    />
-                  </motion.div>
-
-                  <div className="flex justify-between my-3 w-[350px] sm:w-[300px] md:w-[240px] gap-3">
-                    <span className="text-[#B6FFF5] font-medium p-0 m-0">
-                      {movie.title}
-                    </span>
-                    <span className="text-[#777777] font-thin p-0 m-0">
-                      {new Date(movie.release_date).getFullYear()}
-                    </span>
-                  </div>
+          {(filteredMovies ?? movies).map((movie, index) => (
+            <div
+              key={index}
+              ref={index === movies.length - 1 ? movieRef : null}
+              data-ref={index === movies.length - 1 ? index : null}
+              onClick={() => {
+                setmovieId(movie.id);
+                setShowModal(!showModal);
+              }}
+            >
+              <motion.div className="mb-4 cursor-pointer" {...cardAnimation}>
+                <motion.div className="w-[350px] sm:w-[300px] md:w-[240px] h-[450px] sm:h-[400px] md:h-[340px]">
+                  <Card
+                    bgImg={
+                      process.env.NEXT_PUBLIC_TMDB_IMAGE_URL + movie.poster_path
+                    }
+                  />
                 </motion.div>
-              </div>
-            )
-          )}
+
+                <div className="flex justify-between my-3 w-[350px] sm:w-[300px] md:w-[240px] gap-3">
+                  <span className="text-[#B6FFF5] font-medium p-0 m-0">
+                    {movie.title}
+                  </span>
+                  <span className="text-[#777777] font-thin p-0 m-0">
+                    {new Date(movie.release_date).getFullYear()}
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+          ))}
         </div>
       </div>
     </>

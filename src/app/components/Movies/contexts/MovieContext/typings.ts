@@ -119,7 +119,7 @@ declare namespace MovieTypes {
     handleGetMovies: (customPage?: number) => Promise<any>;
     query: string;
     setQuery: React.Dispatch<React.SetStateAction<string>>;
-    filteredMovies: MovieTypes.movie[] | [];
+    filteredMovies: MovieTypes.movie[] | [] | null;
     setFilteredMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
     sort: string;
     setSort: React.Dispatch<React.SetStateAction<string>>;
