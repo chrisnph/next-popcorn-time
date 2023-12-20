@@ -1,5 +1,5 @@
 import { useMovieContext } from "@/app/components/Movies/contexts/MovieContext/MovieProvider";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, useAnimationControls } from "framer-motion";
 import { genreSelectionAnimation } from "../animations";
@@ -51,6 +51,13 @@ const ActionPanelGenres = () => {
           id="genre-selection"
           className="text-white -z-10 opacity-0 top-0 left-0 text-[14px] font-extrabold absolute w-full bg-gray-950 bg-opacity-80 p-[30px] rounded-md shadow-inner ring-[2px] ring-[#B6FFF5] ring-opacity-70"
         >
+          <button
+            className="absolute top-2 right-2 text-red-500"
+            onClick={() => animateControls.start("hidden")}
+          >
+            <FontAwesomeIcon icon={faClose} />
+          </button>
+
           <fieldset className="w-auto flex flex-wrap items-center">
             {genres.map((genre) => (
               <div
