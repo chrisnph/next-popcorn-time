@@ -2,7 +2,7 @@
 
 ## Quick Links
 
-- [Demo](https://popcorn-time-bay.vercel.app/)
+- [Demo](https://next-popcorn-time.vercel.app/)
 
 
 ## Installation
@@ -16,7 +16,7 @@
 2. Install packages
 
    ```
-   cd popcorn-time && npm i
+   cd next-popcorn-time && npm i
    ```
 
 3. Run project locally
