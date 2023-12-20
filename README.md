@@ -10,7 +10,7 @@
 1. Clone repository
 
    ```
-   git clone https://github.com/chrisnph/popcorn-time
+   git clone https://github.com/chrisnph/next-popcorn-time
    ```
 
 2. Install packages
