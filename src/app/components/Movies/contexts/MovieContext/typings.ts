@@ -120,7 +120,7 @@ declare namespace MovieTypes {
     query: string;
     setQuery: React.Dispatch<React.SetStateAction<string>>;
     filteredMovies: MovieTypes.movie[] | [] | null;
-    setFilteredMovies: React.Dispatch<React.SetStateAction<movie[] | []>>;
+    setFilteredMovies: React.Dispatch<React.SetStateAction<movie[] | [] | null>>;
     sort: string;
     setSort: React.Dispatch<React.SetStateAction<string>>;
     rating: number;
